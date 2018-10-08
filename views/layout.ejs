@@ -11,6 +11,14 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 </head>
 <body>
+    <header>
+            <% if(loggedIn) { %>
+                <span>Logged in as:</span> <a href="/users/profile"><%= currentUser.name %></a>
+            <% } else { %>
+                <a href="/users/login">Log In</a> 
+                <a href="/users/signup">Sign Up</a>
+            <% } %>
+    </header>
     <div class="container">
         <%- body %>
     </div>

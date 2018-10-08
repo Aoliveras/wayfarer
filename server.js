@@ -9,7 +9,9 @@ const
     cookieParser = require('cookie-parser'),
     session = require('express-session'),
     MongoDBStore = require('connect-mongodb-session')(session),
-    passport = require('passport')
+    passport = require('passport'),
+    passportConfig = require('./config/passport.js'),
+    usersRouter = require('./routes/users.js')
 
 // environment port
 const
@@ -17,7 +19,7 @@ const
     mongoConnectionString = process.env.MONGODB_URL || 'mongodb://localhost/passport-authentication'
 
 // mongoose connection
-mongoose.connect(mongoConnectionString, (err) => {
+mongoose.connect(mongoConnectionString,{ useNewUrlParser: true }, (err) => {
     console.log(err || "Connected to MongoDB (passport-authentication)")
 })
 
@@ -37,10 +39,30 @@ app.use(flash())
 app.set('view engine', 'ejs')
 app.use(ejsLayouts)
 
+// session + passport
+app.use(session({
+    secret: "you're doing it, Peter!",
+    cookie:{maxAge : 60000000},
+    resave: true,
+    saveUninitialized: false,
+    store: store
+}))
+
+app.use(passport.initialize())
+app.use(passport.session())
+app.use((req, res, next) => {
+    app.locals.currentUser = req.user // currentUser now available in ALL views
+    app.locals.loggedIn = !!req.user // a boolean loggedIn now available in ALL views
+
+    next()
+})
+
 //root route
 app.get('/', (req,res) => {
     res.render('index')
 })
+
+app.use('/users', usersRouter)
 
 app.listen(port, (err) => {
     console.log(err || "Server running on port " + port)
