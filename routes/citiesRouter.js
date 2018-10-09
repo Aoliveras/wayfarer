@@ -24,7 +24,10 @@ router.delete('/:id', citiesController.removeCity)
 //POSTS ROUTES
 router.post('/:id/posts', postsController.create)
 router.get('/:id/posts', postsController.index)
-//router.get('/:id/posts/:id', postsController.show)
+router.get('/:city_id/posts/:id', postsController.show)
+router.get('/:city_id/posts/:id/edit', postsController.edit)
+router.put('/:city_id/posts/:id', postsController.update)
+router.delete('/:city_id/posts/:id', postsController.delete)
 
 
 module.exports = router
