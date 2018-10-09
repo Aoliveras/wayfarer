@@ -2,6 +2,7 @@ const
     express = require('express'),
     router = new express.Router(),
     citiesController = require('../controllers/citiesController')
+    postsController = require('../controllers/postsController')
 
 
 //CITIES ROUTES
@@ -16,10 +17,14 @@ router.patch('/:id', citiesController.updateCity)
 //delete specific city
 router.delete('/:id', citiesController.removeCity)
 //get posts belonging to city
-router.get('/:id/posts', citiesController.getPostsForCity)
+//router.get('/:id/posts', citiesController.getPostsForCity)
 //add a post to a specific album
-router.post('/:id/posts', citiesController.addPostToSpecificCity)
+// router.post('/:id/posts', citiesController.addPostToSpecificCity)
 
 //POSTS ROUTES
+router.post('/:id/posts', postsController.create)
+router.get('/:id/posts', postsController.index)
+//router.get('/:id/posts/:id', postsController.show)
+
 
 module.exports = router

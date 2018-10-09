@@ -1,6 +1,4 @@
-const 
-    City = require('../models/City.js')
-
+const City = require('../models/City.js')
 
 
 //get all cities
@@ -44,24 +42,24 @@ module.exports.removeCity = (req, res) =>{
     })
 }
 
-//get posts for specific city
-module.exports.getPostsForCity = (req, res) =>{
-    City.findById(req.params.id, (err, city) =>{
-        if(err) res.json({ success: false, err })
-        let posts = city.posts
-        res.json({ success: true, payload: posts })
-    })
-}
+// //get posts for specific city
+// module.exports.getPostsForCity = (req, res) =>{
+//     City.findById(req.params.id, (err, city) =>{
+//         if(err) res.json({ success: false, err })
+//         let posts = city.posts
+//         res.json({ success: true, payload: posts })
+//     })
+// }
 
-//add post to specific city
-module.exports.addPostToSpecificCity = (req, res) => {
-    City.findById(req.params.id, (err, city) =>{
-        if(err) res.json({ success: false, err })
-        let post = {...req.body}
-        city.posts.push(post);
-        city.save((err, city) => {
-            if (err) res.json({ success: false, err })
-            res.json({ success: true, payload: city })
-        })
-    })
-}
+// //add post to specific city
+// module.exports.addPostToSpecificCity = (req, res) => {
+//     City.findById(req.params.id, (err, city) =>{
+//         if(err) res.json({ success: false, err })
+//         let post = {...req.body}
+//         city.posts.push(post);
+//         city.save((err, city) => {
+//             if (err) res.json({ success: false, err })
+//             res.json({ success: true, payload: city })
+//         })
+//     })
+// }

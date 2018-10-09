@@ -3,7 +3,7 @@
         <h3>Welcome Back</h3>
         <h1 class="display-4"><%= user.name %></h1>
         <p class="lead">
-          <p class="lead">Writing from: <%= user.currentCity %> | Joined up: <%= user.createdAt.toDateString() %> </p>
+          <p class="lead">Writing from: <%= user.currentCity %> | Joined up: <%= user.createdAt.toDateString() %> | <%= user._id%> </p>
             
             <a href="/users/profile/edit" class="btn btn-warning btn-sm">Edit Profile</a>
         </p>

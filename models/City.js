@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const postSchema = new mongoose.Schema({
     title: String,
     body: String,
-    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
+    author: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
 },
 { timestamps: true });
 
