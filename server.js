@@ -4,6 +4,7 @@ const
     ejs = require('ejs'),
     ejsLayouts = require('express-ejs-layouts'),
     mongoose = require('mongoose'),
+    methodOverride = require('method-override'),
     flash = require('connect-flash'),
     logger = require('morgan'),
     cookieParser = require('cookie-parser'),
@@ -30,6 +31,7 @@ const store = new MongoDBStore({
 });
 
 // middleware
+app.use(methodOverride('_method'))
 app.use(logger('dev'))
 app.use(cookieParser())
 app.use(express.urlencoded({extended: true}))

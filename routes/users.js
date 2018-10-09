@@ -4,7 +4,7 @@ const
     usersRouter = express.Router()
 
 usersRouter.get('/login', (req, res) => {
-        res.render('login')
+        res.render('login', { message: req.flash('loginMessage')})
 })
 
 usersRouter.post('/login', passport.authenticate('local-login', {
@@ -13,7 +13,7 @@ usersRouter.post('/login', passport.authenticate('local-login', {
   }))
 
 usersRouter.get('/signup', (req, res) => {
-  res.render('signup')
+  res.render('signup', { message: req.flash('signupMessage')})
 })
 
 usersRouter.post('/signup', passport.authenticate('local-signup', {
@@ -25,6 +25,19 @@ usersRouter.get('/profile', isLoggedIn, (req, res) => {
     // render the user's profile (only if they are currently logged in)
     res.render('profile', {user: req.user})
 })
+
+usersRouter.get('/profile/edit', isLoggedIn, (req, res) => {
+    res.render('editProfile')
+  })
+
+  usersRouter.patch('/profile', isLoggedIn, (req, res) => {
+    if(!req.body.password) delete req.body.password
+    Object.assign(req.user, req.body)
+    req.user.save((err, updatedUser) => {
+      if(err) return console.log(err)
+      res.redirect('/users/profile')
+    })
+  })
 
 usersRouter.get('/logout', (req, res) => {
     // destroy the session, and redirect the user back to the home page

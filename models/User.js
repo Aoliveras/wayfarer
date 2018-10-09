@@ -1,15 +1,22 @@
 const
     mongoose = require('mongoose'),
     bcrypt = require('bcrypt-nodejs'),
+
+    postSchema = new mongoose.Schema({
+        title: String,
+        body: String
+
+    },
+    { timestamps: true });
+
     userSchema = new mongoose.Schema({
         name: String,
         email: String,
         password: String,
-        currentCity: String
+        currentCity: String,
+        posts: [postSchema]
     },
-    {
-        timestamps: true
-    });
+    { timestamps: true });
 
 userSchema.methods.generateHash = function(password){
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8))
@@ -26,4 +33,6 @@ userSchema.pre('save', function(next) {
   next()
 })
 
-module.exports = mongoose.model('User', userSchema)
+const User = mongoose.model('User', userSchema);
+
+module.exports = User;
