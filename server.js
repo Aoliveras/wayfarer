@@ -8,12 +8,14 @@ const
     flash = require('connect-flash'),
     logger = require('morgan'),
     cookieParser = require('cookie-parser'),
+    bodyParser = require('body-parser'),
     session = require('express-session'),
     MongoDBStore = require('connect-mongodb-session')(session),
     passport = require('passport'),
     passportConfig = require('./config/passport.js'),
-    usersRouter = require('./routes/users.js')
-
+    usersRouter = require('./routes/users.js'),
+    citiesRouter = require('./routes/citiesRouter.js')
+    //City = require('./models/City')
 // environment port
 const
     port = process.env.PORT || 3000,
@@ -36,6 +38,7 @@ app.use(logger('dev'))
 app.use(cookieParser())
 app.use(express.urlencoded({extended: true}))
 app.use(flash())
+app.use(bodyParser.json())
 
 // ejs configuration
 app.set('view engine', 'ejs')
@@ -65,6 +68,7 @@ app.get('/', (req,res) => {
 })
 
 app.use('/users', usersRouter)
+app.use('/cities', citiesRouter)
 
 app.listen(port, (err) => {
     console.log(err || "Server running on port " + port)
