@@ -14,6 +14,7 @@ const
         email: String,
         password: String,
         currentCity: String,
+        imageUrl: String,
         posts: [postSchema]
     },
     { timestamps: true });

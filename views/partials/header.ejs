@@ -1,6 +1,8 @@
 <nav>
       <div class="nav-wrapper">
-        <a href="/" class="brand-logo center">Wayfarer</a>
+        <!-- <a href="/" class="brand-logo left">Wayfarer</a> -->
+        <a href="/" class="brand-logo" style="font-size: 36px"><i class="material-icons" style="font-size: 36px; margin-left: 20px;">language</i>Wayfarer</a>
+
         <ul>
           <% if(loggedIn) { %>
           <li><a class="btn" href="/users/profile"><span>Hello, </span><%= currentUser.name %></a></li>
@@ -8,8 +10,9 @@
         <ul class="right">
           <li><a class="btn" href="/users/logout">Logout</a></li>
         </ul>
-        <ul>
+        
           <% } else { %>
+          <ul class="right">
           <li><a class="btn" href="/users/login">Login</a></li>
           <li><a class="btn" href="/users/signup">Sign Up</a></li>
           <% } %>

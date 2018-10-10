@@ -5,7 +5,8 @@ const City = require('../models/City.js')
 module.exports.getCities = (req, res) =>{
     City.find({}, (err, cities) => {
         if(err) res.json({ success: false, err });
-        res.json({ success: true, payload: cities })
+        //res.json({ success: true, payload: cities })
+        res.render('./cities/citiesIndex', { success: true, payload: cities })
     })
 }
 //create new city
