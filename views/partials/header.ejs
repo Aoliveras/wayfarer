@@ -3,11 +3,9 @@
         <!-- <a href="/" class="brand-logo left">Wayfarer</a> -->
         <a href="/" class="brand-logo" style="font-size: 36px"><i class="material-icons" style="font-size: 36px; margin-left: 20px;">language</i>Wayfarer</a>
 
-        <ul>
+        <ul class="right">
           <% if(loggedIn) { %>
           <li><a class="btn" href="/users/profile"><span>Hello, </span><%= currentUser.name %></a></li>
-        </ul>
-        <ul class="right">
           <li><a class="btn" href="/users/logout">Logout</a></li>
         </ul>
         
