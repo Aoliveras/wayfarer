@@ -5,7 +5,7 @@
               <img src="<%= user.imageUrl %>" style="margin-top: 20px; max-height: 300px;"alt="User Picture"/>
           </div> 
       <div class="col s8">
-        <h1 class="display-4" style="margin-top: 85px;"><%= user.name %></h1>
+        <h1 style="margin-top: 85px;"><%= user.name %></h1>
         <p class="lead">
           <p class="lead">Writing from: <%= user.currentCity %> | Joined up: <%= user.createdAt.toDateString() %></p>
           <p>User ID: <%= user._id%></p>
@@ -15,28 +15,27 @@
             <br>
         </p>
     </div>
+    <div class="container">
+      <div class="card">
+        <div class="card-content">
+        <h4>See What's new!</h4>
+        <a href="/cities" class="btn btn-primary">Let's Explore</a>
+      </div>
+      </div>
+    </div>
 <div class="container">
 <!-- SAMPLE CONTENT - FOR PLACEMENT ONLY -->
 <h2>Travel Journal</h2>
+<% posts.forEach(p => { %>
 <div class="card" style="margin-bottom: 2rem">
   <div class="card-content">
-    <h5 class="section">Air BnB</h5>
-    <p class="section card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum aperiam maiores aliquid quibusdam quasi neque aliquam ut eius magnam nisi soluta doloribus corrupti obcaecati optio repellendus aut voluptatem, velit minus...</p>
-    <a href="#" class="section btn btn-primary">Read More</a>
+    <h5 class="section"><%= p.title %></h5>
+    <p ><%= p.body %></p>
+    <p ><%= p.author %></p>
+
+    <a href="#" class="section btn btn-primary">See Post</a>
+ 
   </div>
 </div>
-<div class="card" style="margin-bottom: 2rem">
-<div class="card-content">
-  <h5 class="section">Cabin in the Woods</h5>
-  <p class="section card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum aperiam maiores aliquid quibusdam quasi neque aliquam ut eius magnam nisi soluta doloribus corrupti obcaecati optio repellendus aut voluptatem, velit minus...</p>
-  <a href="#" class="section btn btn-primary">Read More</a>
-</div>
-</div>
-<div class="card" style="margin-bottom: 2rem">
-  <div class="card-content">
-    <h5 class="section">Summer Cabana</h5>
-    <p class="section card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum aperiam maiores aliquid quibusdam quasi neque aliquam ut eius magnam nisi soluta doloribus corrupti obcaecati optio repellendus aut voluptatem, velit minus...</p>
-    <a href="#" class="section btn btn-primary">Read More</a>
-  </div>
-</div>
+<% }) %>
 </div>

@@ -1,1 +1,24 @@
-<h1>Edit me then bitch!</h1>
+
+<div class="container">
+        <div class="col-sm-6 offset-md-3">
+            <h1>Edit your Post</h1>
+            <form method="post" action="/cities/<%= city_id %>/posts/<%= id %>?_method=PUT">
+            <div>
+                <label for="title">Title</label>
+                <input type="text" id="title" name="title" value="<%= payload.title%>">
+              </div>
+            <div>
+              <label for="body">Tell us all about it!</label>
+              <input type="text" id="body" name="body" value="<%= payload.body %>">
+            </div>
+            <div>
+              <label for="imageUrl">Picture URL</label>
+              <input type="text" id="imageUrl" name= "imageUrl" value="<%= payload.imageUrl %>">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+            <hr>
+            <p>Or, <a href="/users/login">Log In</a></p>
+            <p>Go back <a href="/">home</a>.</p>
+        </div>
+        </div>

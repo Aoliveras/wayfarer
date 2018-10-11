@@ -5,8 +5,10 @@ const City = require('../models/City.js')
 module.exports.getCities = (req, res) =>{
     City.find({}, (err, cities) => {
         if(err) res.json({ success: false, err });
+        //create through postman
         //res.json({ success: true, payload: cities })
-        res.render('./cities/citiesIndex', { success: true, payload: cities })
+        //render page for web app
+        res.render('cities/citiesIndex', { success: true, payload: cities })
     })
 }
 //create new city
@@ -20,9 +22,13 @@ module.exports.createCity = (req, res) => {
 }
 //get a specific city
 module.exports.getCity = (req, res) =>{
-    City.findOne({ _id: req.params.id }, (err, city) =>{
+    let { id } = req.params
+    console.log(id)
+    City.findById(id, (err, city) =>{
         if(err) res.json({ success: false, err })
-        res.json({ success: true, payload: city })
+        //postman view
+        //res.json({ success: true, payload: city })
+        res.render('cities/show', { success: true, payload: city })
     })
 }
 
@@ -31,7 +37,10 @@ module.exports.updateCity = (req, res) => {
     let { id } = req.params;
     City.findByIdAndUpdate(id, req.body, { new: true }, (err, updatedCity) => {
         if (err) res.json({ success: false, payload: err});
+        //postman view
         res.json({ success: true, payload: updatedCity });
+        //view in webapp
+        //res.render('cities/show', {payload: updatedCity} )
     })
 }
 

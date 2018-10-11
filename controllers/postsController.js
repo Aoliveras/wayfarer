@@ -2,22 +2,32 @@ const City = require('../models/City.js')
 
 //index for posts
 module.exports.index = (req, res) =>{
-    City.findById(req.params.id, (err, city) =>{
+    City.findById(req.params.city_id, (err, city) =>{
         if(err) res.json({ success: false, err })
         let posts = city.posts
         res.json({ success: true, payload: posts })
     })
 }
+
+//show new post form
+
+module.exports.new = (req, res) =>{
+    let { city_id } = req.params;
+    console.log(city_id)
+    res.render('posts/newPost', {city_id})
+}
+
 //create new post
 module.exports.create = (req, res) => {
-    City.findById(req.params.id, (err, city) =>{
+    let { city_id } = req.params;
+    City.findById(city_id, (err, city) =>{
         if(err) res.json({ success: false, err })
-        //let post = {...req.body, author: req.user._id} //through the site
-        let post = {...req.body, author:"5bbbc0452426193495219450"} //for postman
+        let post = {...req.body, author: req.user._id} //through the site
+        // let post = {...req.body, author:"5bbbc0452426193495219450"} //for postman
         city.posts.push(post);
         city.save((err, city) => {
             if (err) res.json({ success: false, err })
-            res.json({ success: true, payload: city })
+            res.render('cities/show',{ success: true, payload: city, city_id })
         })
     })
 }
@@ -43,9 +53,8 @@ module.exports.edit = (req, res) =>{
         if (err) res.json({ success: false, err });
 
         let post = city.posts.id(id)
-        console.log(post)
         if (post) {
-            res.render('./posts/editPost', { success: true, payload: post })
+            res.render('./posts/editPost', { success: true, payload: post, city_id, id })
         } else {
             res.json({ success: false, payload: "Post does not exist." })
         }
@@ -64,7 +73,7 @@ module.exports.update = (req, res) => {
             for (let key in body) { post[key] = body[key] }
             city.save((err, city) => {
                 if (err) res.json({ success: false, err });
-                res.json({ success: true, payload: city })
+                res.render('cities/show', { success: true, payload: city, city_id, id })
             });
         } else {
             res.json({ success: false, payload: "Post does not exist." })
@@ -83,7 +92,7 @@ exports.delete = (req, res) => {
             post.remove();
             city.save((err, card) => {
                 if (err) res.json({ success: false, err });
-                res.json({ success: true, payload: city });
+                res.render('cities/show', { success: true, payload: city });
             })
         } else {
             res.json({ success: false, payload: "Post does not exist." })

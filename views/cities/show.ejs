@@ -1,0 +1,38 @@
+<div class="fixed-action-btn">
+        <a href="/cities/<%= payload._id %>/posts/new"class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">mode_edit</i></a>
+        <p class="center-align">Create new post</p>
+    </div>
+<div class="card">
+    <div class="card-content">
+<div class="col s8">
+            <div class="row">
+            <div class="container">
+                <div class="col s4 center">
+                    <h1><%= payload.name %></h1>
+                </div>
+                <div class="col s8">
+                    <img src="<%= payload.imageUrl%>" alt="city image" style="width: 450px;">
+                </div>
+            </div>
+            </div>
+        <div class="container">
+                <h1>Posts</h1>
+                <% if (success) { %>
+                    <% payload.posts.forEach(p => { %>
+                        <div class="card"  style="margin-bottom: 2rem">
+                            <div class="card-content">
+                                <h2><%= p.title %></h2>
+                                <br>
+                                <p style="margin-bottom: 2rem"><%= p.body %></p>
+                                <form method="POST" action='/cities/<%= payload._id %>/posts/<%= p.id %>?_method=DELETE' class="display: inline;">
+                                <button class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">delete</i></button>
+                                <a href="/cities/<%= payload._id %>/posts/<%= p._id %>/edit"class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">redo</i></a>
+                                </form>
+                            </div>
+                        </div>
+                        <% }) %>
+                <% } %>
+        </div>
+    </div>
+</div>
+</div>

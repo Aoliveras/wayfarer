@@ -2,6 +2,7 @@ const
     express = require('express'),
     passport = require('passport'),
     usersRouter = express.Router()
+    City = require('../models/City')
 
 usersRouter.get('/login', (req, res) => {
         res.render('login', { message: req.flash('loginMessage')})
@@ -22,8 +23,18 @@ usersRouter.post('/signup', passport.authenticate('local-signup', {
   }))
 
 usersRouter.get('/profile', isLoggedIn, (req, res) => {
-    // render the user's profile (only if they are currently logged in)
-    res.render('profile', {user: req.user})
+  let  user_id = req.user._id
+  City.aggregate([ { $match: { "posts.author": user_id } },
+  { $unwind: "$posts" },{ $match: { "posts.author": user_id } },{
+    $project: { title: "$posts.title", body: "$posts.body", author: "$posts.author" }
+  }
+ ])
+  .exec((err, posts) => {
+    //console.log(posts)
+        // render the user's profile (only if they are currently logged in)
+    res.render('profile', {user: req.user, posts})
+  })
+
 })
 
 usersRouter.get('/profile/edit', isLoggedIn, (req, res) => {

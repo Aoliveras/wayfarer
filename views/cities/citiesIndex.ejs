@@ -1,1 +1,18 @@
-<h1>Show us dem cities dude!!!!</h1>
+
+    <div class="container">
+        <div class="col s4">
+                <% if (success) { %>
+                <% for(let i=0; i < payload.length; i++) { %>
+                        <div class="card">
+                            <div class="card-content">
+                                <a href="/cities/<%= payload[i]._id %>">
+                                    <h1><%= payload[i].name %></h1>
+                                </a>
+                                <p><%= payload[i]._id %></p>
+                            <img src="<%= payload[i].imageUrl%>" alt="city image" style="width: 250px;">
+                        </div> 
+                        </div>
+                <% } %>
+                <% } %>
+        </div>
+    </div>

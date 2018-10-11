@@ -22,8 +22,9 @@ router.delete('/:id', citiesController.removeCity)
 // router.post('/:id/posts', citiesController.addPostToSpecificCity)
 
 //POSTS ROUTES
-router.post('/:id/posts', postsController.create)
-router.get('/:id/posts', postsController.index)
+router.get('/:city_id/posts', postsController.index)
+router.get('/:city_id/posts/new', postsController.new)
+router.post('/:city_id/posts', postsController.create)
 router.get('/:city_id/posts/:id', postsController.show)
 router.get('/:city_id/posts/:id/edit', postsController.edit)
 router.put('/:city_id/posts/:id', postsController.update)

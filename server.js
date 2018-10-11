@@ -43,6 +43,9 @@ app.use(bodyParser.json())
 // ejs configuration
 app.set('view engine', 'ejs')
 app.use(ejsLayouts)
+//middleware to override for patch
+app.use(methodOverride('_method'))
+app.use(express.urlencoded({ extended: false }))
 
 // session + passport
 app.use(session({
