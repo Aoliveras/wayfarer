@@ -20,7 +20,8 @@ const
 // environment port
 const
     port = process.env.PORT || 3000,
-    mongoConnectionString = process.env.MONGODB_URL || 'mongodb://localhost/passport-authentication'
+    mongoConnectionString = process.env.MONGODB_URL 
+    //|| 'mongodb://localhost/passport-authentication'
 
 // mongoose connection
 mongoose.connect(mongoConnectionString,{ useNewUrlParser: true }, (err) => {
