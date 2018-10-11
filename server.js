@@ -2,6 +2,7 @@ const
     express = require('express'),
     app = express(),
     ejs = require('ejs'),
+    dotenv = require('dotenv'),
     ejsLayouts = require('express-ejs-layouts'),
     mongoose = require('mongoose'),
     methodOverride = require('method-override'),
