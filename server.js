@@ -16,7 +16,6 @@ const
     passportConfig = require('./config/passport.js'),
     usersRouter = require('./routes/users.js'),
     citiesRouter = require('./routes/citiesRouter.js')
-    //City = require('./models/City')
 // environment port
 const
     port = process.env.PORT || 3000,
