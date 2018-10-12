@@ -5,6 +5,7 @@
                 <div class="card"  style="margin-bottom: 2rem">
                     <div class="card-content">
                         <h2><%= payload.title %></h2>
+                        <img src="<%= payload.image %>" alt="post image">
                         <br>
                         <p style="margin-bottom: 2rem"><%= payload.body %></p>
                         <% if (loggedIn && String(currentUser._id) === String(payload.author)) { %>

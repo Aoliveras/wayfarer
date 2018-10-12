@@ -28,7 +28,7 @@ usersRouter.get('/profile', isLoggedIn, (req, res) => {
   City.aggregate([ { $match: { "posts.author": user_id } },
   { $unwind: "$posts" },{ $match: { "posts.author": user_id } }
   ,{
-    $project: {city_id: '$_id', post_id: '$posts._id', title: "$posts.title", body: "$posts.body", author: "$posts.author" }
+    $project: {city_id: '$_id', post_id: '$posts._id', title: "$posts.title", body: "$posts.body", author: "$posts.author", image: "$posts.imageUrl" }
   }
  ])
   .exec((err, posts) => {
