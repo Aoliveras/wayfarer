@@ -1,6 +1,6 @@
 # Wayfarer - project 3
 
-Wayfarer is a website where uses can create posts regarding their favorite travel spots in order to share info about their favorite spots. After creating an account you have access to the world's best pro tips in travel. 
+Wayfarer is a website where users can create posts regarding their favorite travel spots in order to share info about their favorite spots. After creating an account you have access to the world's best pro tips in travel. 
 
 
 # Screenshots

@@ -4,7 +4,7 @@
 
     <!-- render flash message if there is one: -->
   <% if (message.length > 0) { %>
-    <div class="alert alert-danger"><%= message %></div>
+    <div class="red lighten-3" style="padding: 20px;"><%= message %></div>
 <% } %>
 
     <form method="post" action="/users/signup">
