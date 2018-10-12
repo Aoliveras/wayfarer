@@ -23,6 +23,7 @@
                         <div class="card"  style="margin-bottom: 2rem">
                             <div class="card-content">
                                 <h2><%= p.title %></h2>
+                                <img src="<%= p.imageUrl %>" style ="width: 350px; "alt="post image">
                                 <br>
                                 <p style="margin-bottom: 2rem"><%= p.body %></p>
                                 <% if (loggedIn && String(currentUser._id) === String(p.author)) { %>
