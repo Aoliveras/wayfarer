@@ -9,8 +9,6 @@
                         <p style="margin-bottom: 2rem"><%= payload.body %></p>
                         <% if (loggedIn && String(currentUser._id) === String(payload.author)) { %>
                         <form method="POST" action='/cities/<%= payload._id %>/posts/<%= payload.id %>?_method=DELETE' class="display: inline;">
-                        <button class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">delete</i></button>
-                        <a href="/cities/<%= payload.city_id %>/posts/<%= payload.post_id %>/"class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">redo</i></a>
                         </form>
                         <% }%>
                     </div>
