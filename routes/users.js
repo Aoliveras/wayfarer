@@ -23,17 +23,19 @@ usersRouter.post('/signup', passport.authenticate('local-signup', {
   }))
 
 usersRouter.get('/profile', isLoggedIn, (req, res) => {
+  let { city } = req.params
   let  user_id = req.user._id
   City.aggregate([ { $match: { "posts.author": user_id } },
-  { $unwind: "$posts" },{ $match: { "posts.author": user_id } },{
-    $project: { title: "$posts.title", body: "$posts.body", author: "$posts.author", city: "$City._id" }
+  { $unwind: "$posts" },{ $match: { "posts.author": user_id } }
+  ,{
+    $project: {city_id: '$_id', post_id: '$posts._id', title: "$posts.title", body: "$posts.body", author: "$posts.author" }
   }
  ])
   .exec((err, posts) => {
     console.log(posts)
     console.log(City._id)
         // render the user's profile (only if they are currently logged in)
-    res.render('profile', {user: req.user, posts})
+    res.render('profile', {user: req.user, posts, city})
   })
 
 })
