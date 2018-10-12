@@ -1,17 +1,23 @@
-
-    <div class="container center-align">
+<div class="container">
+    <div class="card">
+      <div class="card-content">
       <div class="row">
-          <div class="col s4">
-              <img src="<%= user.imageUrl %>" style="margin-top: 20px; max-height: 300px;"alt="User Picture"/>
+          <div class="col s6">
+              <img src="<%= user.imageUrl %>" style="margin-top: 35px; max-height: 300px;"alt="User Picture"/>
           </div> 
-      <div class="col s8">
-        <h1 style="margin-top: 85px;"><%= user.name %></h1>
-        <p class="lead">
-          <p class="lead">Writing from: <%= user.currentCity %> | Joined up: <%= user.createdAt.toDateString() %></p>
-          <p>User ID: <%= user._id%></p>
+      <div class="col s6">
+        <h1><%= user.name %></h1>
+        <p>User ID: <%= user._id%></p>
+        <p>Joined up: <%= user.createdAt.toDateString() %></p>
+        <br>
+          <p>Writing from:</p>
+          <h4><strong><%= user.currentCity %></strong></h4>
           <a href="/users/profile/edit" class="btn btn-warning btn-sm">Edit Profile</a>
-        </div>   
+        </div>
+      </div>
     </div>
+  </div>
+  </div>
             <br>
         </p>
     </div>
@@ -29,9 +35,8 @@
 <% posts.forEach(p => { %>
 <div class="card" style="margin-bottom: 2rem">
   <div class="card-content">
-    <h5 class="section"><%= p.title %></h5>
+    <h4 class="section"><%= p.title %></h4>
     <p ><%= p.body %></p>
-    <p ><%= p.author %></p>
 
     <!-- <a href="#" class="section btn btn-primary">See Post</a> -->
  
