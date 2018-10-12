@@ -40,7 +40,7 @@ module.exports.show = (req, res) => {
 
         if (city.posts.id(id)) {
             let post = city.posts.id(id)
-            res.json({ success: true, payload: post })
+            res.render('posts/showPost', { success: true, payload: post, city_id, id })
         } else {
             res.json({ success: false, payload: "Post does not exist." })
         }

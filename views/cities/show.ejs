@@ -1,3 +1,4 @@
+<% if (loggedIn) { %>
 <div class="fixed-action-btn">
         <a href="/cities/<%= payload._id %>/posts/new"class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">mode_edit</i></a>
         <p class="center-align">Create new post</p>
@@ -27,7 +28,7 @@
                                 <% if (loggedIn && String(currentUser._id) === String(p.author)) { %>
                                 <form method="POST" action='/cities/<%= payload._id %>/posts/<%= p.id %>?_method=DELETE' class="display: inline;">
                                 <button class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">delete</i></button>
-                                <a href="/cities/<%= payload._id %>/posts/<%= p._id %>/edit"class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">redo</i></a>
+                                <a href="/cities/<%= payload._id %>/posts/<%= p.id %>/edit"class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">redo</i></a>
                                 </form>
                                 <% }%>
                             </div>
@@ -38,3 +39,9 @@
     </div>
 </div>
 </div>
+<% } else { %>
+    <div class="container">
+    <h1>Uh, oh!</h1>
+    <p>You must be signed in to view this information. Please <a href="/users/login">Login</a> or <a href="/users/signup">Sign Up</a>.</p>
+    </div>
+    <% } %>

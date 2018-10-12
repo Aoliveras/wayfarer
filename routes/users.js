@@ -26,11 +26,12 @@ usersRouter.get('/profile', isLoggedIn, (req, res) => {
   let  user_id = req.user._id
   City.aggregate([ { $match: { "posts.author": user_id } },
   { $unwind: "$posts" },{ $match: { "posts.author": user_id } },{
-    $project: { title: "$posts.title", body: "$posts.body", author: "$posts.author" }
+    $project: { title: "$posts.title", body: "$posts.body", author: "$posts.author", city: "$City._id" }
   }
  ])
   .exec((err, posts) => {
-    //console.log(posts)
+    console.log(posts)
+    console.log(City._id)
         // render the user's profile (only if they are currently logged in)
     res.render('profile', {user: req.user, posts})
   })
