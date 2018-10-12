@@ -24,10 +24,12 @@
                                 <h2><%= p.title %></h2>
                                 <br>
                                 <p style="margin-bottom: 2rem"><%= p.body %></p>
+                                <% if (loggedIn && String(currentUser._id) === String(p.author)) { %>
                                 <form method="POST" action='/cities/<%= payload._id %>/posts/<%= p.id %>?_method=DELETE' class="display: inline;">
                                 <button class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">delete</i></button>
                                 <a href="/cities/<%= payload._id %>/posts/<%= p._id %>/edit"class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">redo</i></a>
                                 </form>
+                                <% }%>
                             </div>
                         </div>
                         <% }) %>
